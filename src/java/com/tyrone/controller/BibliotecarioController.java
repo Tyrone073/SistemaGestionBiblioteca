@@ -85,44 +85,45 @@ public class BibliotecarioController  {
     }
 
     public void registrarCliente(Cliente cliente) {
-
+        clienteController.crearCliente(cliente);
     }
 
     public void mostrarClientes() {
-
+        clienteController.mostrarClientes();
     }
 
     public void buscarCliente(String algo) {
+        clienteController.buscarCliente(algo);
     }
 
     public void actualizarDatosCliente(Long id, Cliente cliente) {
-
+        clienteController.actualizarDatosCliente(id, cliente);
     }
 
     public void eliminarCliente(Long id) {
-
+        clienteController.eliminarCliente(id);
     }
 
     public void registrarLibro(Libro libro) {
-
+        libroController.crearLibro(libro);
     }
 
     public void mostrarLibros() {
-
+        libroController.mostrarLibros();
     }
 
     public void actualizarDatosLibro(Long id, Libro libro) {
-
+        libroController.actualizarDatosLibro(id, libro);
     }
 
     public void eliminarLibro(Long id) {
-
+        libroController.eliminarLibro(id);
     }
 
 
 
     public void CLientebuscarLibro(String algo) {
-
+        libroController.buscarLibro(algo);
     }
 
     public void registrarPrestamolibro(Prestamo prestamo) {
