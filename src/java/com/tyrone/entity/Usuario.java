@@ -4,7 +4,7 @@ public class Usuario {
     private static long contador = 1;
     private Long id;
     private String nombre;
-    private int cedula;
+    private Integer cedula;
     private String telefono;
     private String direccion;
     boolean activo;
@@ -33,10 +33,10 @@ public class Usuario {
     public void setNombre(String nombre) {
         this.nombre = nombre;
     }
-    public int getCedula() {
+    public Integer getCedula() {
         return cedula;
     }
-    public void setCedula(int cedula) {
+    public void setCedula(Integer cedula) {
         this.cedula = cedula;
     }
     public String getTelefono() {
