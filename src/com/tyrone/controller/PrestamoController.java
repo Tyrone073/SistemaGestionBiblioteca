@@ -47,7 +47,7 @@ public class PrestamoController {
         }
     }
 
-    public void buscarPrestamo(String algo) {
+    public Prestamo buscarPrestamo(String algo) {
         if (!algo.isEmpty()) {
             boolean encontrado = false;
             // Intentar buscar por ID
@@ -55,12 +55,15 @@ public class PrestamoController {
                 Long idBuscado = Long.parseLong(algo);
                 for (Prestamo p : prestamos) {
                     if (p.getId().equals(idBuscado)) {
-                        System.out.println("Préstamo encontrado por ID: " + p);
-                        return;
+                        System.out.println("Préstamo encontrado por ID: ");
+                        return p;
                     }
                 }
-                System.out.println("No se encontró ningún préstamo con ese ID.");
-                return;
+                if (!encontrado) {
+                    System.out.println("No se encontró ningún préstamo con ese ID.");
+                    return null;
+                }
+
             } catch (NumberFormatException e) {
                 // No es un ID
             }
@@ -69,8 +72,9 @@ public class PrestamoController {
                 int cedula = Integer.parseInt(algo);
                 for (Prestamo p : prestamos) {
                     if (p.getCliente().getCedula() == cedula) {
-                        System.out.println(p);
+                        System.out.println("Prestamo encontrado por cedula: ");
                         encontrado=true;
+                        return p;
                     }
                 }
                 if (!encontrado) {
@@ -80,16 +84,16 @@ public class PrestamoController {
                 // No es una cédula numérica
             }
 
-            // Intentar buscar por fecha
             try {
                 SimpleDateFormat formato = new SimpleDateFormat("dd-MM-yyyy");
                 formato.setLenient(false); // Para que valide bien fechas
                 Date fechaBuscada = formato.parse(algo);
 
                 for (Prestamo p : prestamos) {
-                    if (p.getFechaPrestamo().equals(fechaBuscada) || p.getFechaDevolucion().equals(fechaBuscada)) {
-                        System.out.println(p);
+                    if (p.getFechaPrestamo().equals(fechaBuscada)) {
+                        System.out.println("Prestamo encontrado por fecha: ");
                         encontrado = true;
+                        return p;
                     }
                 }
                 if (!encontrado) {
@@ -102,6 +106,7 @@ public class PrestamoController {
         } else {
             System.out.println("El campo de búsqueda está vacío.");
         }
+        return null;
     }
 
 

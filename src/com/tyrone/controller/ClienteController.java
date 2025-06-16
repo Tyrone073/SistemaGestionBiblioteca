@@ -27,13 +27,13 @@ public class ClienteController {
         }
     }
 
-    public void buscarCliente(String algo){
+    public Cliente buscarCliente(String algo){
         if (!algo.isEmpty()){
             try {
                 for (Cliente c : clientes) {
                     if (c.getCedula() == Integer.parseInt(algo)) {
-                        System.out.println("Cliente encontrado: " + c);
-                        return;
+                        System.out.println("Cliente encontrado");
+                        return c;
                     }
                 }
             }catch (NumberFormatException _){
@@ -41,14 +41,15 @@ public class ClienteController {
             try {
                 for (Cliente c : clientes) {
                     if (c.getNombre().equals(algo)) {
-                        System.out.println("Clientes con nombre: " + algo + " : " + c);
-                        return;
+                        System.out.println("Clientes con nombre: " + algo + " encontrado: ");
+                        return c;
                     }
                 }
             }catch (RuntimeException e){
                 System.out.println("Cliente o nombre inexistentes");
             }
         }
+        return null;
     }
 
     public void actualizarDatosCliente(Long id, Cliente cliente){

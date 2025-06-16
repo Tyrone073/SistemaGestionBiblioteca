@@ -33,4 +33,11 @@ public class Credenciales {
     public void setContrasena(String contrasena) {
         this.contrasena = contrasena;
     }
+
+    @Override
+    public String toString() {
+        return "\nusuario=" + usuario +
+               "\ncontrasena=" + contrasena;
+
+    }
 }

@@ -36,4 +36,11 @@ public class Bibliotecario extends Usuario {
         this.fechaContratacion = fechaContratacion;
     }
 
+    @Override
+    public String toString() {
+        return super.toString() +
+               "\nCredenciales: " + credenciales +
+               "\ncargo: " + cargo +
+               ",\nFecha de Contratacion: " + fechaContratacion;
+    }
 }

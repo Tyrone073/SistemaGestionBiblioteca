@@ -36,13 +36,20 @@ public class BibliotecarioController  {
         }
     }
 
-    public void buscarBibliotecarioPorId(Long id) {
-        for (Bibliotecario b : bibliotecarios){
-            if (b.getId().equals(id)){
-                System.out.println("Bibliotecario: " + b);
-                return;
+    public Bibliotecario buscarBibliotecarioPorId(Long id) {
+        if (id == null) {
+            System.out.println("El ID del bibliotecario no puede ser nulo.");
+        }else {
+            for (Bibliotecario b : bibliotecarios){
+                if (b.getId().equals(id)){
+                    System.out.println("Bibliotecario encontrado");
+                    return b;
+                }
             }
+            System.out.println("bibliotecario no encontrado con ese ID.");
         }
+
+        return null;
     }
 
     public void actualizarDatosBibliotecario(Long id, Bibliotecario bibliotecario) {
@@ -98,8 +105,8 @@ public class BibliotecarioController  {
         clienteController.mostrarClientes();
     }
 
-    public void buscarCliente(String algo) {
-        clienteController.buscarCliente(algo);
+    public Cliente buscarCliente(String algo) {
+        return clienteController.buscarCliente(algo);
     }
 
     public void actualizarDatosCliente(Long id, Cliente cliente) {
@@ -118,18 +125,16 @@ public class BibliotecarioController  {
         libroController.mostrarLibros();
     }
 
+    public Libro buscarLibro(String algo) {
+        return libroController.buscarLibro(algo);
+    }
+
     public void actualizarDatosLibro(Long id, Libro libro) {
         libroController.actualizarDatosLibro(id, libro);
     }
 
     public void eliminarLibro(Long id) {
         libroController.eliminarLibro(id);
-    }
-
-
-
-    public void clientebuscarLibro(String algo) {
-        libroController.buscarLibro(algo);
     }
 
     public void registrarPrestamolibro(Prestamo prestamo) {
@@ -142,8 +147,8 @@ public class BibliotecarioController  {
     public void mostrarPrestamosActivosLibros() {
         prestamoController.mostrarPrestamosActivos();
     }
-    public void buscarPrestamo(String algo) {
-        prestamoController.buscarPrestamo(algo);
+    public Prestamo buscarPrestamo(String algo) {
+        return  prestamoController.buscarPrestamo(algo);
     }
     public void modificarPrestamo(Long id, Prestamo prestamo) {
         prestamoController.modificarPrestamo(id, prestamo);

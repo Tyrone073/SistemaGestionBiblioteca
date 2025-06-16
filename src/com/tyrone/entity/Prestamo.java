@@ -71,6 +71,13 @@ public class Prestamo {
 
     @Override
     public String toString() {
-        return "Préstamo de: " + detallesLibros + " | Fecha: " + fechaPrestamo;
+        return "\nid=" + id +
+               "\ndetallesLibros=" + detallesLibros +
+               "\ncliente=" + cliente +
+               "\nrecepcionista=" + recepcionista +
+               "\nfechaPrestamo=" + fechaPrestamo +
+               "\nfechaDevolucion=" + fechaDevolucion +
+               "\nestado=" + estado;
+
     }
 }

@@ -57,4 +57,14 @@ public class Usuario {
     public void setActivo(boolean activo) {
         this.activo = activo;
     }
+
+    @Override
+    public String toString() {
+        return "\nID: " + id +
+                "\nNombre: " + nombre +
+                "\nCédula: " + cedula +
+                "\nTeléfono: " + telefono +
+                "\nDirección: " + direccion +
+                "\nActivo: " + (activo ? "Sí" : "No");
+    }
 }

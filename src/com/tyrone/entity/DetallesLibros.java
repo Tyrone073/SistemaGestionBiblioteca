@@ -4,12 +4,12 @@ public class DetallesLibros {
     private static long contador = 1;
     private Long id;
     private Libro libro;
-    private int cantidad;
+    private Integer cantidad;
 
     public DetallesLibros() {
     }
 
-    public DetallesLibros(Libro libro, int cantidad) {
+    public DetallesLibros(Libro libro, Integer cantidad) {
         this.id = contador++;
         this.libro = libro;
         this.cantidad = cantidad;

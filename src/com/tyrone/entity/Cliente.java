@@ -24,4 +24,11 @@ public class Cliente extends Usuario {
     public void setHistorialLibrosPrestados(Prestamo prestamo) {
         historialLibrosPrestados.add(prestamo);
     }
+
+
+    @Override
+    public String toString() {
+        return  super.toString() +
+                "historialLibrosPrestados=" + historialLibrosPrestados;
+    }
 }

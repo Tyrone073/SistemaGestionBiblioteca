@@ -24,24 +24,24 @@ public class LibroController {
             }
         }
     }
-    public void buscarLibro(String algo){
+    public Libro buscarLibro(String algo){
         if (!algo.isEmpty()){
             try {
                 for (Libro l : libros) {
                     if (l.getTitulo().equals(algo)) {
-                        System.out.println("Libro encontrado: " + l);
-                        return;
+                        System.out.println("Libro encontrado: ");
+                        return l;
                     }
                 }
                 System.out.println("Libro no encontrado.");
-                return;
+                return null;
             } catch (RuntimeException _) {
             }
             try {
                 for (Libro l : libros) {
                     if (l.getAutor().equals(algo)) {
-                        System.out.println("Libros del autor "+ algo + " : " + l);
-                        return;
+                        System.out.println("Libros del autor "+ algo + " encontrado: ");
+                        return l;
                     }
                 }
                 System.out.println("Autor no encontrado.");
@@ -52,7 +52,9 @@ public class LibroController {
         }else {
             System.out.println("El campo de búsqueda está vacío.");
         }
+        return null;
     }
+
     public void actualizarDatosLibro(Long id, Libro libro){
         for (Libro l : libros) {
             if (l.getId().equals(id)) {

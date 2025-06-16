@@ -57,4 +57,13 @@ public class Libro {
     public void setUbicacion(String ubicacion) {
         this.ubicacion = ubicacion;
     }
+
+    @Override
+    public String toString() {
+        return "\nLibro: " + titulo +
+               "\nAutor: " + autor +
+               "\nGenero: " + genero +
+               "\nEjemplares: " + ejemplares +
+               "\nUbicacion: " + ubicacion;
+    }
 }
