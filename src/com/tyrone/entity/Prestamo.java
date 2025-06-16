@@ -78,6 +78,5 @@ public class Prestamo {
                "\nfechaPrestamo=" + fechaPrestamo +
                "\nfechaDevolucion=" + fechaDevolucion +
                "\nestado=" + estado;
-
     }
 }

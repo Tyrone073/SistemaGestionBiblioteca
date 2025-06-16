@@ -16,7 +16,6 @@ import java.util.Scanner;
 public class Main {
     static Scanner scanner = new Scanner(System.in);
     static BibliotecarioController controller = new BibliotecarioController();
-    static int opcion = 1;
     static Long id;
 
     static {
@@ -24,9 +23,32 @@ public class Main {
         Credenciales cred = new Credenciales("admin", "1234");
         Bibliotecario admin = new Bibliotecario(datos, cred, Cargo.ADMIN, new Date());
         controller.crearBibliotecario(admin);
+
+        Usuario datos1 = new Usuario("Juan", 12342390, 999999999, "Av. C1");
+        Credenciales cred1 = new Credenciales("juan", "12345");
+        Bibliotecario admin1 = new Bibliotecario(datos, cred, Cargo.RECEPCIONISTA, new Date());
+        controller.crearBibliotecario(admin1);
+
+        Usuario datos2 = new Usuario("Pedro", 1234567890, 999999999, "Av. j2");
+        Credenciales cred2 = new Credenciales("pedro", "123");
+        Bibliotecario admin2 = new Bibliotecario(datos, cred, Cargo.BODEGUERO, new Date());
+        controller.crearBibliotecario(admin2);
+
+        Usuario datos3 = new Usuario("Maria", 1234567890, 999999999, "Av. j3");
+        Cliente cliente = new Cliente(datos3);
+        controller.registrarCliente(cliente);
+
+        Usuario datos4 = new Usuario("Jose", 1234567890, 999999999, "Av. j4");
+        Cliente cliente1 = new Cliente(datos4);
+        controller.registrarCliente(cliente1);
+
+        Libro libro = new Libro("Dune", "Frank Herbert", Genero.CIENCIA_FICCION, 15, "Pasillo C1, Repisa 4b, casilla 8");
+        controller.registrarLibro(libro);
     }
 
     public static void main(String[] args) {
+
+        int opcion = 1;
 
         System.out.println("=====================================");
         System.out.println("==¡Bienvenido al Sistema Biblioteca==");
@@ -90,7 +112,8 @@ public class Main {
     }
 
     private static void mostrarMenuTrabajador(Bibliotecario bibliotecario) {
-       int opcion = 1;
+        int opcion;
+
         do {
             System.out.println("\n=== MENÚ PRINCIPAL ===");
             System.out.println("Bienvenido: " + bibliotecario.getNombre() + " (" + bibliotecario.getCargo() + ")");
@@ -101,84 +124,65 @@ public class Main {
             // Opciones específicas por rol
             if (bibliotecario.getCargo().equals(Cargo.ADMIN)) {
                 System.out.println("2. Gestionar personal");
-                System.out.println("3. Gestionar usuarios");
+                System.out.println("3. Gestionar clientes");
                 System.out.println("4. Gestionar libros");
                 System.out.println("5. Gestionar prestamos");
-                System.out.println("0. Cerrar sesión");
-                System.out.print("Seleccione una opción: ");
-                opcion = scanner.nextInt();
-                scanner.nextLine();
-                switch (opcion) {
-                    case 1:
-                        System.out.println(controller.buscarBibliotecarioPorId(bibliotecario.getId()));
-                        break;
-                    case 2:
-                        menuGestionarPersonal();
-                        break;
-                    case 3:
-                        menuGestionarClientes();
-                        break;
-                    case 4:
-                        menuGestionarLibros();
-                        break;
-                    case 5:
-                        menuGestionarPrestamos(bibliotecario);
-                        break;
-                    case 0:
-                        return; // Salir al menú principal
-                    default:
-                        System.out.println("Opción no válida");
-                }
-            }
-
-            if (bibliotecario.getCargo().equals(Cargo.RECEPCIONISTA)) {
+            } else if (bibliotecario.getCargo().equals(Cargo.RECEPCIONISTA)) {
                 System.out.println("2. Registrar préstamos");
                 System.out.println("3. Gestionar clientes");
-                System.out.println("0. Cerrar sesión");
-                System.out.print("Seleccione una opción: ");
-                opcion = scanner.nextInt();
-                scanner.nextLine();
-                switch (opcion) {
-                    case 1:
-                        System.out.println(controller.buscarBibliotecarioPorId(bibliotecario.getId()));
-                        break;
-                    case 2:
-                        menuGestionarClientes();
-                        break;
-                    case 3:
-                        menuGestionarPrestamos(bibliotecario);
-                        break;
-                    case 0:
-                        return; // Salir al menú principal
-                    default:
-                        System.out.println("Opción no válida");
-                }
-            }
-
-            if (bibliotecario.getCargo().equals(Cargo.BODEGUERO)) {
+            } else if (bibliotecario.getCargo().equals(Cargo.BODEGUERO)) {
                 System.out.println("2. Gestionar libros");
-                System.out.println("0. Cerrar sesión");
-                System.out.print("Seleccione una opción: ");
-                opcion = scanner.nextInt();
-                scanner.nextLine();
-                switch (opcion) {
-                    case 1:
-                        System.out.println(controller.buscarBibliotecarioPorId(bibliotecario.getId()));
-                        break;
-                    case 2:
-                        menuGestionarLibros();
-                        break;
-                    case 0:
-                        return;
-                    default:
-                        System.out.println("Opción no válida");
-                }
             }
 
-        }while (opcion != 0);
+            System.out.println("0. Cerrar sesión");
+            System.out.print("Seleccione una opción: ");
+
+            try {
+                opcion = Integer.parseInt(scanner.nextLine());
+            } catch (NumberFormatException e) {
+                System.out.println("Error: Por favor ingrese un número válido.");
+                continue;
+            }
+
+            switch (opcion) {
+                case 1:
+                    System.out.println(controller.buscarBibliotecarioPorId(bibliotecario.getId()));
+                    break;
+                case 2:
+                    if (bibliotecario.getCargo().equals(Cargo.ADMIN)) {
+                        menuGestionarPersonal();
+                    } else if (bibliotecario.getCargo().equals(Cargo.RECEPCIONISTA)) {
+                        menuGestionarPrestamos(bibliotecario);
+                    } else if (bibliotecario.getCargo().equals(Cargo.BODEGUERO)) {
+                        menuGestionarLibros();
+                    }
+                    break;
+                case 3:
+                    if (bibliotecario.getCargo().equals(Cargo.ADMIN) || bibliotecario.getCargo().equals(Cargo.RECEPCIONISTA)) {
+                        menuGestionarClientes();
+                    }
+                    break;
+                case 4:
+                    if (bibliotecario.getCargo().equals(Cargo.ADMIN)) {
+                        menuGestionarLibros();
+                    }
+                    break;
+                case 5:
+                    if (bibliotecario.getCargo().equals(Cargo.ADMIN)) {
+                        menuGestionarPrestamos(bibliotecario);
+                    }
+                    break;
+                case 0:
+                    return; // Esto ahora retornará correctamente al menú principal
+                default:
+                    System.out.println("Opción no válida");
+            }
+        } while (true);
     }
 
     private static void menuGestionarPersonal(){
+        int opcion;
+
         System.out.println("\n===Menu de gestion del personal===");
         System.out.println("1. Registrar bibliotecarios");
         System.out.println("2. Mostrar bibliotecarios");
@@ -281,6 +285,8 @@ public class Main {
     }
 
     private static void menuGestionarClientes(){
+        int opcion;
+
         System.out.println("\n===Menu de gestion de clientes===");
         System.out.println("1. Registrar cliente");
         System.out.println("2. Mostrar clientes");
@@ -338,12 +344,29 @@ public class Main {
         System.out.println("Datos personales del Cliente: ");
         System.out.print("Nombre: ");
         String nombre = scanner.nextLine();
-        System.out.print("Cedula: ");
-        Integer cedula = scanner.nextInt();
-        scanner.nextLine(); // limpia el buffer
-        System.out.print("Telefono: ");
-        Integer telefono = scanner.nextInt();
-        scanner.nextLine(); // limpia el buffer
+        // Validación de cédula
+        int cedula;
+        while (true) {
+            try {
+                System.out.print("Cedula: ");
+                cedula = Integer.parseInt(scanner.nextLine());
+                break;
+            } catch (NumberFormatException e) {
+                System.out.println("Error: Ingrese solo números y numeros de 10 digitos para la cédula");
+            }
+        }
+
+        // Validación de teléfono
+        int telefono;
+        while (true) {
+            try {
+                System.out.print("Telefono: ");
+                telefono = Integer.parseInt(scanner.nextLine());
+                break;
+            } catch (NumberFormatException e) {
+                System.out.println("Error: Ingrese solo números y numeros de 10 digitos para el teléfono");
+            }
+        }
         System.out.print("Direccion: ");
         String direccion = scanner.nextLine();
 
@@ -354,6 +377,8 @@ public class Main {
     }
 
     private static void menuGestionarLibros() {
+        int opcion;
+
         System.out.println("\n===Menu de gestion de libros===");
         System.out.println("1. Registrar libro");
         System.out.println("2. Mostrar libros");
@@ -415,9 +440,16 @@ public class Main {
             genero = Genero.NOVELA;
         }
 
-        System.out.print("Cantidad de ejemplares: ");
-        Integer ejemplares = scanner.nextInt();
-        scanner.nextLine();
+        int ejemplares;
+        while (true) {
+            try {
+                System.out.print("Cantidad de ejemplares: ");
+                ejemplares = Integer.parseInt(scanner.nextLine());
+                break;
+            } catch (NumberFormatException e) {
+                System.out.println("Error: Ingrese solo números");
+            }
+        }
         System.out.print("Está archivado en: ");
         String ubicacion = scanner.nextLine();
 
@@ -427,6 +459,8 @@ public class Main {
     }
 
     private static void menuGestionarPrestamos(Bibliotecario recepcionista) {
+        int opcion;
+
         System.out.println("===Menu de gestion de prestamos===");
         System.out.println("1. Registrar prestamo");
         System.out.println("2. Mostrar prestamos activos");
@@ -502,16 +536,23 @@ public class Main {
             System.out.print("Libro: ");
             String libro = scanner.nextLine();
             Libro libroEncontrado = controller.buscarLibro(libro);
-
-            System.out.print("Cantidad de ejemplares: ");
-            Integer cantidad = scanner.nextInt();
-            scanner.nextLine();
-            detallesLibros.add(new DetallesLibros(libroEncontrado, cantidad));
-            System.out.print("¿Desea agregar otro libro? (s/n): ");
-            String respuesta = scanner.nextLine().toUpperCase();
-            if (!respuesta.equals("S")) {
+            if (libroEncontrado != null) {
+                System.out.print("Cantidad de ejemplares: ");
+                Integer cantidad = scanner.nextInt();
+                scanner.nextLine();
+                detallesLibros.add(new DetallesLibros(libroEncontrado, cantidad));
+                System.out.print("¿Desea agregar otro libro? (s/n): ");
+                String respuesta = scanner.nextLine().toUpperCase();
+                if (!respuesta.equals("S")) {
+                    break;
+                }
+            }
+            System.out.print("¿Desea volver? (s/n): ");
+            String respuesta1 = scanner.nextLine().toUpperCase();
+            if (respuesta1.equals("S")) {
                 break;
             }
+
         }
 
         System.out.print("Cliente: ");
