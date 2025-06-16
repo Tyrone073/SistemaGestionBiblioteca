@@ -1,4 +1,4 @@
-package java.com.tyrone.enums;
+package com.tyrone.enums;
 
 public enum Cargo {
     ADMIN,

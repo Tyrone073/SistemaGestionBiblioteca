@@ -1,6 +1,6 @@
-package java.com.tyrone.entity;
+package com.tyrone.entity;
 
-import java.com.tyrone.enums.Estado;
+import com.tyrone.enums.Estado;
 import java.util.Date;
 import java.util.List;
 

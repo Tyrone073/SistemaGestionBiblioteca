@@ -1,24 +1,24 @@
-package java.com.tyrone.entity;
+package com.tyrone.entity;
 
 public class Usuario {
     private static long contador = 1;
     private Long id;
     private String nombre;
     private Integer cedula;
-    private String telefono;
+    private Integer telefono;
     private String direccion;
     boolean activo;
 
     public Usuario() {
     }
 
-    public Usuario(String nombre, int cedula, String telefono, String direccion, boolean activo) {
+    public Usuario(String nombre, Integer cedula, Integer telefono, String direccion) {
         this.id = contador++;
         this.nombre = nombre;
         this.cedula = cedula;
         this.telefono = telefono;
         this.direccion = direccion;
-        this.activo = activo;
+        this.activo = true;
     }
 
     public Long getId() {
@@ -39,10 +39,10 @@ public class Usuario {
     public void setCedula(Integer cedula) {
         this.cedula = cedula;
     }
-    public String getTelefono() {
+    public Integer getTelefono() {
         return telefono;
     }
-    public void setTelefono(String telefono) {
+    public void setTelefono(Integer telefono) {
         this.telefono = telefono;
     }
     public String getDireccion() {

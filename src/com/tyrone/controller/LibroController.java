@@ -1,6 +1,6 @@
-package java.com.tyrone.controller;
+package com.tyrone.controller;
 
-import java.com.tyrone.entity.Libro;
+import com.tyrone.entity.Libro;
 import java.util.ArrayList;
 import java.util.List;
 

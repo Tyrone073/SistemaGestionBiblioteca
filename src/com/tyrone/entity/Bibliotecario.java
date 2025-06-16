@@ -1,6 +1,6 @@
-package java.com.tyrone.entity;
+package com.tyrone.entity;
 
-import java.com.tyrone.enums.Cargo;
+import com.tyrone.enums.Cargo;
 import java.util.Date;
 
 public class Bibliotecario extends Usuario {
@@ -12,7 +12,7 @@ public class Bibliotecario extends Usuario {
     }
 
     public Bibliotecario(Usuario usuario, Credenciales credenciales, Cargo cargo, Date fechaContratacion) {
-        super(usuario.getNombre(), usuario.getCedula(), usuario.getTelefono(), usuario.getDireccion(), usuario.isActivo());
+        super(usuario.getNombre(), usuario.getCedula(), usuario.getTelefono(), usuario.getDireccion());
         this.credenciales = credenciales;
         this.cargo = cargo;
         this.fechaContratacion = fechaContratacion;

@@ -1,9 +1,5 @@
-package java.com.tyrone.controller;
-
-import java.com.tyrone.entity.Bibliotecario;
-import java.com.tyrone.entity.Cliente;
-import java.com.tyrone.entity.Libro;
-import java.com.tyrone.entity.Prestamo;
+package com.tyrone.controller;
+import com.tyrone.entity.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -39,6 +35,16 @@ public class BibliotecarioController  {
             }
         }
     }
+
+    public void buscarBibliotecarioPorId(Long id) {
+        for (Bibliotecario b : bibliotecarios){
+            if (b.getId().equals(id)){
+                System.out.println("Bibliotecario: " + b);
+                return;
+            }
+        }
+    }
+
     public void actualizarDatosBibliotecario(Long id, Bibliotecario bibliotecario) {
         for (Bibliotecario b : bibliotecarios) {
             if (b.getId().equals(id)) {
@@ -122,7 +128,7 @@ public class BibliotecarioController  {
 
 
 
-    public void CLientebuscarLibro(String algo) {
+    public void clientebuscarLibro(String algo) {
         libroController.buscarLibro(algo);
     }
 
@@ -149,5 +155,17 @@ public class BibliotecarioController  {
         prestamoController.eliminarPrestamo(id);
     }
 
+    public Bibliotecario autenticarBibliotecario(Credenciales credenciales) {
+        if (credenciales != null) {
+            for (Bibliotecario b : bibliotecarios) {
+                if (b.getCredenciales().getUsuario().equals(credenciales.getUsuario()) && b.getCredenciales().getContrasena().equals(credenciales.getContrasena())) {
+                    return b;
+                }
+            }
+            System.out.println("Credenciales incorrectas.");
+        }
+
+        return null;
+    }
 
 }

@@ -1,6 +1,6 @@
-package java.com.tyrone.entity;
+package com.tyrone.entity;
 
-import java.com.tyrone.enums.Genero;
+import com.tyrone.enums.Genero;
 
 public class Libro {
     private static long contador = 1;

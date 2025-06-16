@@ -1,4 +1,4 @@
-package java.com.tyrone.entity;
+package com.tyrone.entity;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -13,8 +13,7 @@ public class Cliente extends Usuario {
                 usuario.getNombre(),
                 usuario.getCedula(),
                 usuario.getTelefono(),
-                usuario.getDireccion(),
-                usuario.isActivo()
+                usuario.getDireccion()
         );
     }
 

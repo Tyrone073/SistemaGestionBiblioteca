@@ -1,8 +1,8 @@
-package java.com.tyrone.controller;
+package com.tyrone.controller;
 
-import java.com.tyrone.entity.Cliente;
-import java.com.tyrone.entity.Prestamo;
-import java.com.tyrone.enums.Estado;
+import com.tyrone.entity.Cliente;
+import com.tyrone.entity.Prestamo;
+import com.tyrone.enums.Estado;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;

@@ -1,4 +1,4 @@
-package java.com.tyrone.entity;
+package com.tyrone.entity;
 
 public class Credenciales {
     private static long contador = 1;
