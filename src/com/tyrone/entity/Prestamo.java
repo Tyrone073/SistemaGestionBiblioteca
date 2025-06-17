@@ -71,12 +71,12 @@ public class Prestamo {
 
     @Override
     public String toString() {
-        return "\nid=" + id +
-               "\ndetallesLibros=" + detallesLibros +
-               "\ncliente=" + cliente +
-               "\nrecepcionista=" + recepcionista +
-               "\nfechaPrestamo=" + fechaPrestamo +
-               "\nfechaDevolucion=" + fechaDevolucion +
-               "\nestado=" + estado;
+        return "\nid: " + id +
+               "\ndetallesLibros: " + detallesLibros +
+               "\ncliente: " +cliente.getNombre()+ " " + cliente.getCedula() +
+               "\nrecepcionista: " + recepcionista.getNombre() +
+               "\nfechaPrestamo: " + fechaPrestamo +
+               "\nfechaDevolucion: " + fechaDevolucion +
+               "\nestado: " + estado;
     }
 }

@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+
 public class PrestamoController {
     private List<Prestamo> prestamos = new ArrayList<>();
 
@@ -19,8 +20,9 @@ public class PrestamoController {
             cliente.setHistorialLibrosPrestados(prestamo);
             System.out.println("Prestamo creado exitosamente.");
             System.out.println(prestamo);
-        }
+        }else {
         System.out.println("No se pudo crear el prestamo.");
+        }
     }
 
     public void mostrarTodosLosPrestamos() {
@@ -56,6 +58,7 @@ public class PrestamoController {
                 for (Prestamo p : prestamos) {
                     if (p.getId().equals(idBuscado)) {
                         System.out.println("Préstamo encontrado por ID: ");
+                        encontrado=true;
                         return p;
                     }
                 }

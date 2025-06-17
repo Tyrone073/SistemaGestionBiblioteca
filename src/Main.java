@@ -34,7 +34,7 @@ public class Main {
         Bibliotecario admin2 = new Bibliotecario(datos, cred, Cargo.BODEGUERO, new Date());
         controller.crearBibliotecario(admin2);
 
-        Usuario datos3 = new Usuario("Maria", 1234567890, 999999999, "Av. j3");
+        Usuario datos3 = new Usuario("Maria", 1302234644, 999999999, "Av. j3");
         Cliente cliente = new Cliente(datos3);
         controller.registrarCliente(cliente);
 

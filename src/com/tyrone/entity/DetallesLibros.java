@@ -14,4 +14,10 @@ public class DetallesLibros {
         this.libro = libro;
         this.cantidad = cantidad;
     }
+
+    @Override
+    public String toString() {
+        return  "\nTitulo: " + libro.getTitulo() + " Autor: " + libro.getAutor() +
+                "\ncantidad: " + cantidad;
+    }
 }

@@ -79,7 +79,6 @@ public class ClienteController {
 //                clientes.remove(c);
                 c.setActivo(false);
                 System.out.println("Cliente eliminado exitosamente.");
-                return;
             }
         }
         System.out.println("Cliente no encontrado.");

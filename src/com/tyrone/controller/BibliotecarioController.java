@@ -168,6 +168,8 @@ public class BibliotecarioController  {
                 }
             }
             System.out.println("Credenciales incorrectas.");
+        }else {
+            System.out.println("Credenciales vacias");
         }
 
         return null;
