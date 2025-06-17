@@ -13,11 +13,25 @@ import java.util.Scanner;
 
 //TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or
 // click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
+/**
+* Clase principal que inicia el sistema de gestión de biblioteca.
+*
+* Esta clase contiene el menú principal y los métodos para interactuar con el sistema,
+* incluyendo gestión de usuarios, libros y préstamos.
+*
+* El sistema se inicializa con datos de prueba que incluyen:
+*
+*   3 bibliotecarios (admin, recepcionista, bodeguero)
+*   2 clientes
+*   1 libro de ejemplo ("Dune")
+*
+*/
 public class Main {
     static Scanner scanner = new Scanner(System.in);
     static BibliotecarioController controller = new BibliotecarioController();
     static Long id;
 
+    // Bloque de inicialización con datos de prueba
     static {
         Usuario datos = new Usuario("Tyrone", 1234567890, 999999999, "Av. Central");
         Credenciales cred = new Credenciales("admin", "1234");
@@ -46,6 +60,10 @@ public class Main {
         controller.registrarLibro(libro);
     }
 
+    /**
+     * Metodo principal que inicia la aplicación.
+     *
+     */
     public static void main(String[] args) {
 
         int opcion = 1;
@@ -90,6 +108,11 @@ public class Main {
 
     }
 
+    /**
+     * Busca libros en el sistema por título o autor.
+     *
+     * Muestra un mensaje de búsqueda y los resultados encontrados.
+     */
     private static void buscarLibros() {
         System.out.println("\n=== BUSCAR LIBROS ===");
         System.out.print("Ingrese término de búsqueda (título o autor): ");
@@ -98,6 +121,12 @@ public class Main {
         System.out.println(libro);
     }
 
+    /**
+     * Maneja el proceso de inicio de sesión para trabajadores.
+     *
+     * Solicita credenciales y autentica al usuario. Si es exitoso,
+     * muestra el menú correspondiente al rol del trabajador.
+     */
     private static void iniciarSesionTrabajador() {
         System.out.println("\n=== INICIO DE SESIÓN TRABAJADOR ===");
         System.out.print("Usuario: ");
@@ -111,6 +140,11 @@ public class Main {
         }
     }
 
+    /**
+     * Muestra el menú principal según el rol del trabajador.
+     *
+     * @param bibliotecario El objeto Bibliotecario autenticado
+     */
     private static void mostrarMenuTrabajador(Bibliotecario bibliotecario) {
         int opcion;
 
@@ -180,6 +214,11 @@ public class Main {
         } while (true);
     }
 
+    /**
+     * Muestra el menú de gestión de personal (solo para administradores).
+     *
+     * Permite realizar operaciones CRUD sobre bibliotecarios.
+     */
     private static void menuGestionarPersonal(){
         int opcion;
 
@@ -237,6 +276,11 @@ public class Main {
 
     }
 
+    /**
+     * Solicita los datos necesarios para registrar un nuevo bibliotecario.
+     *
+     * @return Objeto Bibliotecario con los datos ingresados
+     */
     private static Bibliotecario PedirDatosBibliotecario(){
         System.out.println("Datos personales del bibliotecario: ");
         System.out.print("Nombre: ");
@@ -284,6 +328,11 @@ public class Main {
         return bibliotecario;
     }
 
+    /**
+     * Muestra el menú de gestión de clientes.
+     *
+     * Disponible para administradores y recepcionistas.
+     */
     private static void menuGestionarClientes(){
         int opcion;
 
@@ -340,6 +389,11 @@ public class Main {
         }
     }
 
+    /**
+     * Solicita los datos necesarios para registrar un nuevo cliente.
+     *
+     * @return Objeto Cliente con los datos ingresados
+     */
     private static Cliente PedirDatosCliente(){
         System.out.println("Datos personales del Cliente: ");
         System.out.print("Nombre: ");
@@ -376,6 +430,11 @@ public class Main {
         return cliente;
     }
 
+    /**
+     * Muestra el menú de gestión de libros.
+     *
+     * Disponible para administradores y bodegueros.
+     */
     private static void menuGestionarLibros() {
         int opcion;
 
@@ -424,6 +483,11 @@ public class Main {
         }
     }
 
+    /**
+     * Solicita los datos necesarios para registrar un nuevo libro.
+     *
+     * @return Objeto Libro con los datos ingresados
+     */
     private static Libro PedirDatosLibro(){
         System.out.println("Datos del libro: ");
         System.out.print("Titulo: ");
@@ -458,6 +522,11 @@ public class Main {
         return libro;
     }
 
+    /**
+     * Muestra el menú de gestión de préstamos.
+     *
+     * @param recepcionista El bibliotecario que realiza la operación
+     */
     private static void menuGestionarPrestamos(Bibliotecario recepcionista) {
         int opcion;
 
@@ -529,6 +598,12 @@ public class Main {
 
     }
 
+    /**
+     * Solicita los datos necesarios para registrar un nuevo préstamo.
+     *
+     * @param recepcionista El bibliotecario que registra el préstamo
+     * @return Objeto Prestamo con los datos ingresados
+     */
     private static Prestamo PedirDatosPrestamo (Bibliotecario recepcionista){
         System.out.println("Datos del prestamo: ");
         List<DetallesLibros> detallesLibros = new ArrayList<>();
